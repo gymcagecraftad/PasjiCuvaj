@@ -99,84 +99,121 @@ class _AddDogState extends State<AddDog> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Align(
+        alignment: Alignment.topCenter,
+        child: Icon(
+          Icons.pets,
+          size: 200.0,
+          color: Colors.green,
+        ),
+      ),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Dog name'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter a dog name';
-                  }
-                  return null;
-                },
-                onChanged: (value) {
-                  setState(() {
-                    dogName = value;
-                    checkDataCompletion();
-                  });
-                },
-              ),
-              SizedBox(height: 16.0),
-              Row(
-                children: [
-                  Text('Age: '),
-                  SizedBox(width: 8.0),
-                  DropdownButton<int>(
-                    value: dogAge,
-                    onChanged: (value) {
-                      setState(() {
-                        dogAge = value!;
-                        checkDataCompletion();
-                      });
-                    },
-                    items: List.generate(30, (index) => index + 1)
-                        .map((age) => DropdownMenuItem<int>(
-                              value: age,
-                              child: Text('$age'),
-                            ))
-                        .toList(),
-                  ),
-                ],
-              ),
-              SizedBox(height: 16.0),
-              Row(
-                children: [
-                  Text('Dog breed: '),
-                  DropdownButton<String>(
-                    hint: Text('Select your dog breed'),
-                    value: selectedBreed,
-                    onChanged: (newValue) {
-                      setState(() {
-                        selectedBreed = newValue;
-                        checkDataCompletion();
-                      });
-                    },
-                    items: breeds.map((breed) {
-                      return DropdownMenuItem<String>(
-                        value: breed,
-                        child: Text(breed),
-                      );
-                    }).toList(),
-                  ),
-                ],
-              ),
-              SizedBox(height: 16.0),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Custom Requests',
-                  alignLabelWithHint: true,
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black),
-                  ),
-                ),
-                onChanged: (value) {
-                  setState(() {
-                    customRequests = value;
-                  });
-                },
-                maxLines: 10,
-                keyboardType: TextInputType.multiline,
-                textInputAction: TextInputAction.newline,
-                textAlignVertical: TextAlignVertical.top,
-              ),
+  decoration: InputDecoration(
+    labelText: 'Dog name',
+    hintText: 'Enter your dog\'s name', // Optional hint text
+    prefixIcon: Icon(Icons.pets,
+    color: Colors.green), // Optional icon
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12.0),
+    ),
+    filled: true,
+    fillColor: Colors.grey[200],
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.green, width: 2.0),
+      borderRadius: BorderRadius.circular(12.0),
+    ),
+  ),
+  validator: (value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter a dog name';
+    }
+    return null;
+  },
+  onChanged: (value) {
+    setState(() {
+      dogName = value;
+      checkDataCompletion();
+    });
+  },
+),SizedBox(height: 16.0),
+Row(
+  children: [
+    Text(
+      'Age: ',
+      style: TextStyle(
+        fontSize: 16.0,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    SizedBox(width: 8.0),
+    DropdownButton<int>(
+      value: dogAge,
+      onChanged: (value) {
+        setState(() {
+          dogAge = value!;
+          checkDataCompletion();
+        });
+      },
+      items: List.generate(30, (index) => index + 1)
+          .map((age) => DropdownMenuItem<int>(
+                value: age,
+                child: Text('$age'),
+              ))
+          .toList(),
+    ),
+  ],
+),
+SizedBox(height: 16.0),
+Row(
+  children: [
+    Text(
+      'Dog breed: ',
+      style: TextStyle(
+        fontSize: 16.0,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    SizedBox(width: 8.0),
+    DropdownButton<String>(
+      hint: Text('Select your dog breed'),
+      value: selectedBreed,
+      onChanged: (newValue) {
+        setState(() {
+          selectedBreed = newValue;
+          checkDataCompletion();
+        });
+      },
+      items: breeds.map((breed) {
+        return DropdownMenuItem<String>(
+          value: breed,
+          child: Text(breed),
+        );
+      }).toList(),
+    ),
+  ],
+),
+SizedBox(height: 16.0),
+TextFormField(
+  decoration: InputDecoration(
+    labelText: 'Custom Requests',
+    alignLabelWithHint: true,
+    filled: true, // Fill the background color
+    fillColor: Colors.green[200], // Background color
+    border: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.green), // Border color
+      borderRadius: BorderRadius.circular(12.0),
+    ),
+  ),
+  onChanged: (value) {
+    setState(() {
+      customRequests = value;
+    });
+  },
+  maxLines: 5,
+  keyboardType: TextInputType.multiline,
+  textInputAction: TextInputAction.newline,
+  textAlignVertical: TextAlignVertical.top,
+),
               SizedBox(height: 24.0),
               Container(
                 width: double.infinity,
@@ -188,13 +225,17 @@ class _AddDogState extends State<AddDog> {
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.yellow,
+                    primary: Colors.green,
                     onPrimary: Colors.black,
-                    side: BorderSide(color: Colors.black),
+                    textStyle: TextStyle(
+                      fontSize:18.0,
+                      fontWeight: FontWeight.bold
+                    )
+                    
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: Text('Add Dog'),
+                    child: Text('Add your dog'),
                   ),
                 ),
               ),

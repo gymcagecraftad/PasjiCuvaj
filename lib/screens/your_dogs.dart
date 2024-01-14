@@ -39,7 +39,7 @@ class _YourDogsState extends State<YourDogs> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Your dogs'),
+        title: Text('Your registred dogs'),
         actions: [
           IconButton(
             icon: Icon(Icons.add),
@@ -61,28 +61,35 @@ class _YourDogsState extends State<YourDogs> {
                   child: Container(
                     margin: EdgeInsets.all(8.0),
                     decoration: BoxDecoration(
-                      color: Colors.blue,
+                      color: Colors.green,
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: ListTile(
+                       leading: Icon(
+      Icons.pets, // Add your desired icon here
+      color: Colors.white,
+      size: 36.0,
+    ),
                       title: Text(
                         dogs[index].dogName,
-                        style: TextStyle(color: Colors.white),
-                      ),
+                        style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 25.0),
+                      ),  
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             'Age: ${dogs[index].dogAge.toString()}',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(
+                               fontSize: 20.0,
+                               color: Colors.white),
                           ),
                           Text(
                             'Breed: ${dogs[index].dogBreed}',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.white, fontSize: 20.0,),
                           ),
                           Text(
                             'Custom Requests: ${dogs[index].customRequests}',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.white, fontSize: 16.0,),
                           ),
                         ],
                       ),

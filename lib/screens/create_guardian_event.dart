@@ -64,28 +64,51 @@ class _CreateGuardianEventScreenState extends State<CreateGuardianEventScreen> {
                 ),
               ),
               SizedBox(height: 10),
-              Text(
-                'Dwelling Type:',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              Row(
-                children: [
-                  Radio<String>(
-                    value: 'Apartment',
-                    groupValue: _selectedDwellingType,
-                    onChanged: (value) =>
-                        setState(() => _selectedDwellingType = value),
-                  ),
-                  Text('Apartment'),
-                  Radio<String>(
-                    value: 'House',
-                    groupValue: _selectedDwellingType,
-                    onChanged: (value) =>
-                        setState(() => _selectedDwellingType = value),
-                  ),
-                  Text('House'),
-                ],
-              ),
+              Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    Text(
+      'Dwelling Type:',
+      style: TextStyle(
+        color: Colors.black, // Set text color to black
+        fontSize: 18.0, // Set text font size
+        fontWeight: FontWeight.bold, // Set text font weight
+      ),
+    ),
+    SizedBox(height: 8.0),
+    Row(
+      children: [
+        Radio<String>(
+          value: 'Apartment',
+          groupValue: _selectedDwellingType,
+          onChanged: (value) =>
+              setState(() => _selectedDwellingType = value),
+        ),
+        Text(
+          'Apartment',
+          style: TextStyle(
+            fontSize: 16.0,
+             // Set text font size for the radio button label
+          ),
+        ),
+        Radio<String>(
+          value: 'House',
+          groupValue: _selectedDwellingType,
+          onChanged: (value) =>
+              setState(() => _selectedDwellingType = value),
+        ),
+        Text(
+          'House',
+          style: TextStyle(
+            fontSize: 16.0,
+             // Set text font size for the radio button label
+          ),
+        ),
+      ],
+    ),
+  ],
+),
+
               SizedBox(height: 10),
               Text(
                 'Has Yard:',
@@ -121,32 +144,70 @@ class _CreateGuardianEventScreenState extends State<CreateGuardianEventScreen> {
                     setState(() => _selectedDogSize = value),
               ),
               SizedBox(height: 10),
-              Text(
-                'Maximum number of dogs:',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              TextFormField(
-                keyboardType: TextInputType.number,
-                onChanged: (value) {
-                  setState(() {
-                    _maxDogs = int.tryParse(value);
-                  });
-                },
-                decoration: InputDecoration(
-                  hintText: 'Enter maximum number of dogs',
-                ),
-              ),
+              Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    Text(
+      'Maximum number of dogs:',
+      style: TextStyle(
+        color: Colors.black, // Set text color to black
+        fontSize: 18.0, // Set text font size
+        fontWeight: FontWeight.bold, // Set text font weight
+      ),
+    ),
+    SizedBox(height: 8.0),
+    TextFormField(
+      keyboardType: TextInputType.number,
+      onChanged: (value) {
+        setState(() {
+          _maxDogs = int.tryParse(value);
+        });
+      },
+      style: TextStyle(
+        fontSize: 16.0, // Set text font size for the input
+      ),
+      decoration: InputDecoration(
+        hintText: 'Enter maximum number of dogs',
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        filled: true,
+        fillColor: Colors.grey[200], // Set background color
+      ),
+    ),
+  ],
+),
+
               SizedBox(height: 10),
-              Text(
-                'Location:',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              TextFormField(
-                controller: _locationController,
-                decoration: InputDecoration(
-                  hintText: 'Enter location',
-                ),
-              ),
+              Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    Text(
+      'Location:',
+      style: TextStyle(
+        color: Colors.black, // Set text color to black
+        fontSize: 18.0, // Set text font size
+        fontWeight: FontWeight.bold, // Set text font weight
+      ),
+    ),
+    SizedBox(height: 8.0),
+    TextFormField(
+      controller: _locationController,
+      style: TextStyle(
+        fontSize: 16.0, // Set text font size for the input
+      ),
+      decoration: InputDecoration(
+        hintText: 'Enter location',
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        filled: true,
+        fillColor: Colors.grey[200], // Set background color
+      ),
+    ),
+  ],
+),
+
               SizedBox(height: 10),
               Text(
                 'Select Region:',
@@ -178,21 +239,41 @@ class _CreateGuardianEventScreenState extends State<CreateGuardianEventScreen> {
                     setState(() => _selectedRegion = value),
               ),
               SizedBox(height: 10),
-              Text(
-                'Price per day:',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              TextFormField(
-                keyboardType: TextInputType.number,
-                onChanged: (value) {
-                  setState(() {
-                    _pricePerDay = double.tryParse(value);
-                  });
-                },
-                decoration: InputDecoration(
-                  hintText: 'Enter price per day',
-                ),
-              ),
+              Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    Text(
+      'Price per day:',
+      style: TextStyle(
+        color: Colors.black, // Set text color to black
+        fontSize: 18.0, // Set text font size
+        fontWeight: FontWeight.bold, // Set text font weight
+      ),
+    ),
+    SizedBox(height: 8.0),
+    TextFormField(
+      keyboardType: TextInputType.number,
+      onChanged: (value) {
+        setState(() {
+          _pricePerDay = double.tryParse(value);
+        });
+      },
+      style: TextStyle(
+        fontSize: 16.0, // Set text font size for the input
+      ),
+      decoration: InputDecoration(
+        hintText: 'Enter price per day',
+        prefixText: '\$', // Add a currency symbol as a prefix
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        filled: true,
+        fillColor: Colors.grey[200], // Set background color
+      ),
+    ),
+  ],
+),
+
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () async {
@@ -220,8 +301,19 @@ class _CreateGuardianEventScreenState extends State<CreateGuardianEventScreen> {
                     Navigator.pushNamedAndRemoveUntil(context, '/my_guardian_events_screen',(route) => false,);
                   }
                 },
-                child: Text('Create Event'),
-              ),
+                style: ElevatedButton.styleFrom(
+    primary: Colors.green, // Set the background color to green
+                ),
+                child: Text(
+    'Create Event',
+    style: TextStyle(
+      color: Colors.black, // Set text color to black
+      fontSize: 16.0, // Set text font size
+      fontWeight: FontWeight.bold, // Set text font weight
+    ),
+  ),
+),
+              
             ],
           ),
         ),

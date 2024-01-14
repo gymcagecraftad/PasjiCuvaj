@@ -49,7 +49,7 @@ class _MyGuardianEventsScreenState extends State<MyGuardianEventsScreen> {
               style: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
-                color: Colors.deepPurple,
+                color: Colors.green,
               ),
             ),
             SizedBox(height: 20),
@@ -76,23 +76,52 @@ class _MyGuardianEventsScreenState extends State<MyGuardianEventsScreen> {
                         return Card(
                           elevation: 2.0,
                           margin: EdgeInsets.symmetric(vertical: 8.0),
+                          color:Colors.green,
                           child: Padding(
                             padding: const EdgeInsets.all(16.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Center(
-                                  child: Text(
-                                    'From: ${_formatDate(event.fromDate)} To: ${_formatDate(event.toDate)}',
-                                    style: TextStyle(fontSize: 16),
-                                  ),
-                                ),
-                                ListTile(
-                                  title: Text(
-                                    'Location: ${event.location}\nAvailable dogs: ${event.maxDogs}',
-                                    style: TextStyle(fontSize: 14),
-                                  ),
-                                ),
+  child: Text(
+    'From: ${_formatDate(event.fromDate)} \nTo: ${_formatDate(event.toDate)}',
+    style: TextStyle(
+      fontSize: 20, // Set text font size to 20
+      color: Colors.white, // Set text color to white
+    ),
+  ),
+),
+SizedBox(height: 8.0),
+                                Container(
+  width: double.infinity,
+  padding: EdgeInsets.all(8.0),
+  decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(8.0),
+    color: Colors.white,
+  ),
+  child: Row(
+    children: [
+      Icon(
+        Icons.pets, // Replace with the desired icon
+        color: Colors.green,
+        size: 50.0,
+      ),
+      SizedBox(width: 8.0), // Add spacing between icon and text
+      Expanded(
+        child: ListTile(
+          title: Text(
+            'Location: ${event.location}\nAvailable dogs: ${event.maxDogs}',
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.green,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ),
+    ],
+  ),
+),
                                 SizedBox(height: 8.0),
                                 Center(
                                   child: Text(
@@ -100,36 +129,64 @@ class _MyGuardianEventsScreenState extends State<MyGuardianEventsScreen> {
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.green,
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ),
                                 SizedBox(height: 8.0),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        _showMoreInfoDialog(context, event);
-                                      },
-                                      child: Text('More Info'),
-                                    ),
-                                    SizedBox(width: 8.0),
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        _showEditDialog(context, event);
-                                      },
-                                      child: Text('Edit'),
-                                    ),
-                                    SizedBox(width: 8.0),
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        _showDeleteConfirmationDialog(context, event);
-                                      },
-                                      child: Text('Delete'),
-                                    ),
-                                  ],
-                                ),
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: [
+    ElevatedButton(
+      onPressed: () {
+        _showMoreInfoDialog(context, event);
+      },
+      style: ElevatedButton.styleFrom(
+        primary: Colors.white, // Set background color to green
+      ),
+      child: Text(
+        'More Info',
+        style: TextStyle(
+          fontSize: 18, // Set text font size to 18
+          color: Colors.green, // Set text color to white
+        ),
+      ),
+    ),
+    SizedBox(width: 8.0),
+    ElevatedButton(
+      onPressed: () {
+        _showEditDialog(context, event);
+      },
+      style: ElevatedButton.styleFrom(
+        primary: Colors.white, // Set background color to green
+      ),
+      child: Text(
+        'Edit',
+        style: TextStyle(
+          fontSize: 18, // Set text font size to 18
+          color: Colors.green, // Set text color to white
+        ),
+      ),
+    ),
+    SizedBox(width: 8.0),
+    ElevatedButton(
+      onPressed: () {
+        _showDeleteConfirmationDialog(context, event);
+      },
+      style: ElevatedButton.styleFrom(
+        primary: Colors.white, // Set background color to green
+      ),
+      child: Text(
+        'Delete',
+        style: TextStyle(
+          fontSize: 18, // Set text font size to 18
+          color: Colors.green, // Set text color to white
+        ),
+      ),
+    ),
+  ],
+),
+
                               ],
                             ),
                           ),

@@ -7,7 +7,7 @@ class DogSubmissionScreen extends StatefulWidget {
   final String eventID;
 
   DogSubmissionScreen({Key? key, required this.eventID}) : super(key: key);
-
+ 
   @override
   _DogSubmissionScreenState createState() => _DogSubmissionScreenState();
 }

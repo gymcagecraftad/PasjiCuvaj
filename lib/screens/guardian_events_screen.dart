@@ -279,18 +279,27 @@ class _GuardianEventScreenState extends State<GuardianEventScreen> {
               style: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
-                color: Colors.deepPurple,
+                color: Colors.green,
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                ElevatedButton(
-                  onPressed: showFilterDialog,
-                  child: Text('Filter'),
-                ),
-              ],
-            ),
+           Row(
+  mainAxisAlignment: MainAxisAlignment.end,
+  children: [
+    ElevatedButton(
+      onPressed: showFilterDialog,
+      style: ElevatedButton.styleFrom(
+        primary: Colors.green, // Set background color to green
+      ),
+      child: Text(
+        'Filter',
+        style: TextStyle(
+          color: Colors.white, // Set text color to white
+        ),
+      ),
+    ),
+  ],
+),
+
             SizedBox(height: 20),
             Expanded(
               child: FutureBuilder<List<Map<String, dynamic>>>(
@@ -313,61 +322,101 @@ class _GuardianEventScreenState extends State<GuardianEventScreen> {
                       String userName = events[index]['userName'];
                       if (event.maxDogs > 0 && DateTime.parse(event.toDate).isAfter(DateTime.now())) {
                         return Card(
-                          elevation: 2.0,
-                          margin: EdgeInsets.symmetric(vertical: 8.0),
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Center(
-                                  child: Text(
-                                    'Guardian: $userName',
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: 8.0),
-                                ListTile(
-                                  title: Text(
-                                    'From: ${_formatDate(event.fromDate)} To: ${_formatDate(event.toDate)}',
-                                    style: TextStyle(fontSize: 16),
-                                  ),
-                                  subtitle: Text(
-                                    'Location: ${event.location}\nAvailable dogs: ${event.maxDogs}',
-                                    style: TextStyle(fontSize: 14),
-                                  ),
-                                ),
-                                SizedBox(height: 8.0),
-                                Center(
-                                  child: Text(
-                                    '\$${event.pricePerDay} per day',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.green,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: 8.0),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    // Navigate to a new screen to show more detailed info
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => EventDetailsScreen(event: event),
-                                      ),
-                                    );
-                                  },
-                                  child: Text('More Info'),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
+  elevation: 2.0,
+  margin: EdgeInsets.symmetric(vertical: 8.0),
+  child: Container(
+    decoration: BoxDecoration(
+      color: Colors.green, // Set background color to green
+      borderRadius: BorderRadius.circular(8.0),
+    ),
+    padding: EdgeInsets.all(16.0),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Center(
+          child: Text(
+            'Guardian: $userName',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.white, // Set text color to white
+            ),
+          ),
+        ),
+        SizedBox(height: 8.0),
+        Center( // Center the title
+          child: Text(
+            'From: ${_formatDate(event.fromDate)} \nTo: ${_formatDate(event.toDate)}',
+            style: TextStyle(fontSize: 18, color: Colors.white),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        SizedBox(height: 8.0),
+        Container(
+  width: double.infinity,
+  padding: EdgeInsets.all(8.0),
+  decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(8.0),
+    color: Colors.white,
+  ),
+  child: Row(
+    children: [
+      Icon(
+        Icons.pets, // Replace with the desired icon
+        color: Colors.green,
+        size: 50.0,
+      ),
+      SizedBox(width: 8.0), // Add spacing between icon and text
+      Expanded(
+        child: ListTile(
+          title: Text(
+            'Location: ${event.location}\nAvailable dogs: ${event.maxDogs}',
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.green,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ),
+    ],
+  ),
+),
+        SizedBox(height: 8.0),
+        Center(
+          child: Text(
+            '\$${event.pricePerDay} per day',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+        ),
+        SizedBox(height: 8.0),
+        Center( // Center the button
+          child: ElevatedButton(
+            onPressed: () {
+              // Navigate to a new screen to show more detailed info
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EventDetailsScreen(event: event),
+                ),
+              );
+            },
+            style: ElevatedButton.styleFrom(
+              primary: Colors.white, // Set button background color to white
+              onPrimary: Colors.green, // Set button text color to green
+            ),
+            child: Text('More Info'),
+          ),
+        ),
+      ],
+    ),
+  ),
+);
+
                       } else {
                         // Dodano: Vrne prazno polje, če maxDogs ni večji od 0 ali toDate ni večji od trenutnega datuma
                         return Container();
@@ -437,59 +486,95 @@ class EventDetailsScreen extends StatelessWidget {
             appBar: AppBar(
               title: Text('Event Details'),
             ),
-            body: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Guardian: $guardianName',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 8.0),
-                  Text(
-                    'From: ${_formatDate(event.fromDate)} To: ${_formatDate(event.toDate)}',
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  Text(
-                    'Location: ${event.location}\nRegion: ${event.region}\nAvailible dogs: ${event.maxDogs}\nHousing type: ${event.housingType}\nMaximum dog size: ${event.dogSize}',
-                    style: TextStyle(fontSize: 14),
-                  ),
-                  Text(
-                    '${event.hasYard ? "Has yard" : "Doesn\'t have a yard"}',
-                    style: TextStyle(
-                      fontSize: 14,
-                    ),
-                  ),
-                  SizedBox(height: 8.0),
-                  Text(
-                    '\$${event.pricePerDay} per day',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.green,
-                    ),
-                  ),
-                  if (!isCurrentUserOwner && isLoggedIn)
-                    ElevatedButton(
-                      onPressed: () {
-                        print('Sending eventID:');
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => DogSubmissionScreen(eventID: event.id),
-                          ),
-                        );
-                      },
-                      child: Text('Submit a dog'),
-                    ),
-                  // Add more details as needed
-                ],
-              ),
+            body: Container(
+  decoration: BoxDecoration(
+    color: Colors.green, // Set background color to green
+    borderRadius: BorderRadius.circular(8.0),
+  ),
+  padding: EdgeInsets.all(16.0),
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.pets, // Replace with your desired icon
+            color: Colors.white, // Set icon color to white
+            size: 100.0, // Adjust the icon size as needed
+          ),
+        ],
+      ),
+      Center(
+        child: Text(
+          'Guardian: $guardianName',
+          style: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            color: Colors.white, // Set text color to white
+          ),
+        ),
+      ),
+      SizedBox(height: 8.0),
+      Center(
+        child: Text(
+          'From: ${_formatDate(event.fromDate)} \nTo: ${_formatDate(event.toDate)}',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+      ),
+       SizedBox(height: 16.0),
+      Center(
+        child: Text(
+          'Location: ${event.location}\nRegion: ${event.region}\nAvailible dogs: ${event.maxDogs}\nHousing type: ${event.housingType}\nMaximum dog size: ${event.dogSize}',
+          style: TextStyle(fontSize: 18, color: Colors.white),
+          textAlign: TextAlign.center,
+        ),
+      ),
+      Center(
+        child: Text(
+          '${event.hasYard ? "Has yard" : "Doesn\'t have a yard"}',
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.white,
+          ),
+        ),
+      ),
+      SizedBox(height: 16.0),
+      Center(
+        child: Text(
+          '\$${event.pricePerDay} per day',
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+      ),
+       SizedBox(height: 16.0),
+      if (!isCurrentUserOwner && isLoggedIn)
+        Center(
+          child: ElevatedButton(
+            onPressed: () {
+              print('Sending eventID:');
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DogSubmissionScreen(eventID: event.id),
+                ),
+              );
+            },
+            style: ElevatedButton.styleFrom(
+              primary: Colors.white, // Set button background color to white
+              onPrimary: Colors.green, // Set button text color to green
             ),
+            child: Text('Submit a dog', style: TextStyle(color: Colors.green,fontSize: 18,)),
+          ),
+        ),
+      // Add more details as needed
+    ],
+  ),
+),
+
           );
         }
       },

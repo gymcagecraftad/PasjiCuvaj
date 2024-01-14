@@ -111,9 +111,30 @@ class _EditDogState extends State<EditDog> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Align(
+        alignment: Alignment.topCenter,
+        child: Icon(
+          Icons.pets,
+          size: 200.0,
+          color: Colors.green,
+        ),
+      ),
               TextFormField(
-                initialValue: dogName,
-                decoration: InputDecoration(labelText: 'Dog name'),
+  initialValue: dogName,
+  decoration: InputDecoration(
+    labelText: 'Dog name',
+    prefixIcon: Icon(Icons.pets, color:Colors.green), // Add your desired icon here
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12.0),
+    ),
+    filled: true,
+    fillColor: Colors.grey[200],
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.green, width: 2.0),
+      borderRadius: BorderRadius.circular(12.0),
+    ),
+  ),
+  style: TextStyle(fontSize: 18.0), //
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a dog name';
@@ -129,54 +150,73 @@ class _EditDogState extends State<EditDog> {
               ),
               SizedBox(height: 16.0),
               Row(
-                children: [
-                  Text('Age: '),
-                  SizedBox(width: 8.0),
-                  DropdownButton<int>(
-                    value: dogAge,
-                    onChanged: (value) {
-                      setState(() {
-                        dogAge = value!;
-                        checkDataCompletion();
-                      });
-                    },
-                    items: List.generate(30, (index) => index + 1)
-                        .map((age) => DropdownMenuItem<int>(
-                              value: age,
-                              child: Text('$age'),
-                            ))
-                        .toList(),
-                  ),
-                ],
-              ),
+  children: [
+    Text(
+      'Age: ',
+      style: TextStyle(
+        fontSize: 16.0, // Adjust the font size
+        fontWeight: FontWeight.bold, // Adjust the font weight
+      ),
+    ),
+    SizedBox(width: 8.0),
+    DropdownButton<int>(
+      value: dogAge,
+      onChanged: (value) {
+        setState(() {
+          dogAge = value!;
+          checkDataCompletion();
+        });
+      },
+      items: List.generate(30, (index) => index + 1)
+          .map((age) => DropdownMenuItem<int>(
+                value: age,
+                child: Text('$age'),
+              ))
+          .toList(),
+      style: TextStyle(
+        fontSize: 16.0, // Adjust the font size for the dropdown items
+      ),
+    ),
+  ],
+),
+
               SizedBox(height: 16.0),
               Row(
-                children: [
-                  Text('Dog breed: '),
-                  DropdownButton<String>(
-                    hint: Text('Select your dog breed'),
-                    value: selectedBreed,
-                    onChanged: (newValue) {
-                      setState(() {
-                        selectedBreed = newValue;
-                        checkDataCompletion();
-                      });
-                    },
-                    items: breeds.map((breed) {
-                      return DropdownMenuItem<String>(
-                        value: breed,
-                        child: Text(breed),
-                      );
-                    }).toList(),
-                  ),
-                ],
-              ),
+  children: [
+    Text(
+      'Dog breed: ',
+      style: TextStyle(
+        fontSize: 16.0, // Adjust the font size
+        fontWeight: FontWeight.bold, // Adjust the font weight
+      ),
+    ),
+    SizedBox(width: 8.0),
+    DropdownButton<String>(
+      hint: Text('Select your dog breed'),
+      value: selectedBreed,
+      onChanged: (newValue) {
+        setState(() {
+          selectedBreed = newValue;
+          checkDataCompletion();
+        });
+      },
+      items: breeds.map((breed) {
+        return DropdownMenuItem<String>(
+          value: breed,
+          child: Text(breed),
+        );
+      }).toList(),
+    ),
+  ],
+),
               SizedBox(height: 16.0),
               TextFormField(
                 initialValue: customRequests,
                 decoration: InputDecoration(
                   labelText: 'Custom Requests',
                   alignLabelWithHint: true,
+                  filled: true, // Fill the background color
+                  fillColor: Colors.green[200],
                   border: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.black),
                   ),
@@ -186,7 +226,7 @@ class _EditDogState extends State<EditDog> {
                     customRequests = value;
                   });
                 },
-                maxLines: 10,
+                maxLines: 5,
                 keyboardType: TextInputType.multiline,
                 textInputAction: TextInputAction.newline,
                 textAlignVertical: TextAlignVertical.top,
@@ -202,9 +242,12 @@ class _EditDogState extends State<EditDog> {
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.yellow,
+                    primary: Colors.green,
                     onPrimary: Colors.black,
-                    side: BorderSide(color: Colors.black),
+                    textStyle: TextStyle(
+                      fontSize:18.0,
+                      fontWeight: FontWeight.bold
+                    )
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),

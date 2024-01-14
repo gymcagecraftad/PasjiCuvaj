@@ -35,41 +35,194 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 16.0,),
-            TextFormField(
-              controller: usernameController,
-              decoration: InputDecoration(labelText: 'Username'),
+            Text(
+              'Create your account',
+              style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.green,
+              ),
             ),
-            SizedBox(height: 16.0,),
-            TextFormField(
-              controller: nameController,
-              decoration: InputDecoration(labelText: 'Name'),
-            ),
-            SizedBox(height: 16.0,),
-            TextFormField(
-              controller: surnameController,
-              decoration: InputDecoration(labelText: 'Surmame'),
-            ),
-            TextFormField(
-              controller: emailController,
-              decoration: InputDecoration(labelText: 'Email'),
-            ),
-            SizedBox(height: 16.0),
-            TextFormField(
-              controller: passwordController,
-              obscureText: true,
-              decoration: InputDecoration(labelText: 'Password'),
-            ),
-            SizedBox(height: 16.0),
-            TextFormField(
-              controller: confirmPasswordController,
-              obscureText: true,
-              decoration: InputDecoration(labelText: 'Confirm Password'),
-            ),
+
+            Padding(
+  padding: EdgeInsets.symmetric(vertical: 16.0),
+  child: TextFormField(
+    controller: usernameController,
+    style: TextStyle(
+      fontSize: 18.0,
+      color: Colors.green,
+      fontWeight: FontWeight.bold,
+    ),
+    decoration: InputDecoration(
+      labelText: 'Username',
+      labelStyle: TextStyle(
+        fontSize: 16.0,
+        fontWeight: FontWeight.bold,
+        color: Colors.grey,
+      ),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.green, width: 2.0),
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+      filled: true,
+      fillColor: Colors.grey[200],
+      prefixIcon: Icon(Icons.person, color: Colors.green),
+    ),
+  ),
+),
+            Padding(
+  padding: EdgeInsets.symmetric(vertical: 16.0),
+  child: TextFormField(
+    controller: nameController,
+    style: TextStyle(
+      fontSize: 18.0,
+      color: Colors.green,
+      fontWeight: FontWeight.bold,
+    ),
+    decoration: InputDecoration(
+      labelText: 'Name',
+      labelStyle: TextStyle(
+        fontSize: 16.0,
+        fontWeight: FontWeight.bold,
+        color: Colors.grey,
+      ),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.green, width: 2.0),
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+      filled: true,
+      fillColor: Colors.grey[200],
+      prefixIcon: Icon(Icons.person, color: Colors.green),
+    ),
+  ),
+),
+            Padding(
+  padding: EdgeInsets.symmetric(vertical: 16.0),
+  child: TextFormField(
+    controller: surnameController,
+    style: TextStyle(
+      fontSize: 18.0,
+      color: Colors.green,
+      fontWeight: FontWeight.bold,
+    ),
+    decoration: InputDecoration(
+      labelText: 'Surname',
+      labelStyle: TextStyle(
+        fontSize: 16.0,
+        fontWeight: FontWeight.bold,
+        color: Colors.grey,
+      ),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.green, width: 2.0),
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+      filled: true,
+      fillColor: Colors.grey[200],
+      prefixIcon: Icon(Icons.person, color: Colors.green),
+    ),
+  ),
+),
+            Padding(
+  padding: EdgeInsets.symmetric(vertical: 16.0),
+  child: TextFormField(
+    controller: emailController,
+    style: TextStyle(
+      fontSize: 18.0,
+      color: Colors.green,
+      fontWeight: FontWeight.bold,
+    ),
+    decoration: InputDecoration(
+      labelText: 'Email',
+      labelStyle: TextStyle(
+        fontSize: 16.0,
+        fontWeight: FontWeight.bold,
+        color: Colors.grey,
+      ),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.green, width: 2.0),
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+      filled: true,
+      fillColor: Colors.grey[200],
+      prefixIcon: Icon(Icons.email, color: Colors.green),
+    ),
+  ),
+),
+            
+          Padding(
+  padding: EdgeInsets.symmetric(vertical: 16.0),
+  child: TextFormField(
+    controller: passwordController,
+    style: TextStyle(
+      fontSize: 18.0,
+      color: Colors.green,
+      fontWeight: FontWeight.bold,
+    ),
+    decoration: InputDecoration(
+      labelText: 'Password',
+      labelStyle: TextStyle(
+        fontSize: 16.0,
+        fontWeight: FontWeight.bold,
+        color: Colors.grey,
+      ),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.green, width: 2.0),
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+      filled: true,
+      fillColor: Colors.grey[200],
+      prefixIcon: Icon(Icons.lock, color: Colors.green),
+    ),
+  ),
+),
+            Padding(
+  padding: EdgeInsets.symmetric(vertical: 16.0),
+  child: TextFormField(
+    controller: confirmPasswordController,
+    style: TextStyle(
+      fontSize: 18.0,
+      color: Colors.green,
+      fontWeight: FontWeight.bold,
+    ),
+    decoration: InputDecoration(
+      labelText: 'Confirm password',
+      labelStyle: TextStyle(
+        fontSize: 16.0,
+        fontWeight: FontWeight.bold,
+        color: Colors.grey,
+      ),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.green, width: 2.0),
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+      filled: true,
+      fillColor: Colors.grey[200],
+      prefixIcon: Icon(Icons.lock, color: Colors.green),
+    ),
+  ),
+),
             SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () async {
@@ -79,6 +232,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   });
                   return;
                 }
+                
 
                 firebase_auth.User? user =
                     await authProvider.registerWithEmailAndPassword(
@@ -101,19 +255,34 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   });
                 }
               },
-              child: Text('Register'),
-            ),
-            if (errorMessage != null)
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: Text(
-                  errorMessage!,
-                  style: TextStyle(color: Colors.red),
-                ),
-              ),
-          ],
-        ),
-      ),
-    );
-  }
+              style: ElevatedButton.styleFrom(
+    primary: Colors.green, // Background color for the Register button
+    padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(12.0),
+    ),
+    elevation: 3.0,
+  ),
+  child: Text(
+    'Register',
+    style: TextStyle(
+      fontSize: 18.0,
+      fontWeight: FontWeight.bold,
+      color: Colors.white,
+    ),
+  ),
+),
+if (errorMessage != null)
+  Padding(
+    padding: const EdgeInsets.symmetric(vertical: 16.0),
+    child: Text(
+      errorMessage!,
+      style: TextStyle(color: Colors.red),
+    ),
+  ),
+],
+),
+),
+);
+}
 }

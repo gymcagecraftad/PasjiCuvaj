@@ -64,14 +64,6 @@ class DatabaseProvider {
     try {
       Query query = _firestore.collection('guardian_events');
 
-      if (orderBy != null && orderBy != "No Order") {
-        if (orderBy == "Price Ascending") {
-          query = query.orderBy("pricePerDay");
-        } else {
-          query = query.orderBy("pricePerDay", descending: true);
-        }
-      }
-
       // Apply region filter
       if (region != null) {
         query = query.where('region', isEqualTo: region);
@@ -81,13 +73,21 @@ class DatabaseProvider {
       if (fromDate != null) {
         String fromDateStr =
             DateFormat('yyyy-MM-dd HH:mm:ss.SSS').format(fromDate);
-        query = query.where('fromDate', isGreaterThanOrEqualTo: fromDateStr);
+        query = query.where('fromDate', isGreaterThanOrEqualTo: fromDateStr).orderBy('fromDate');
       }
 
       if (toDate != null) {
         String toDateStr = DateFormat('yyyy-MM-dd HH:mm:ss.SSS').format(toDate);
-        query = query.where('toDate', isLessThanOrEqualTo: toDateStr);
+        query = query.where('toDate', isLessThanOrEqualTo: toDateStr).orderBy('toDate');
       }
+      if (orderBy != null && orderBy != "No Order") {
+        if (orderBy == "Price Ascending") {
+          query = query.orderBy("pricePerDay");
+        } else {
+          query = query.orderBy("pricePerDay", descending: true);
+        }
+      }
+
       // Add more where clauses for additional filters
       QuerySnapshot eventsSnapshot = await query.get();
       List<Map<String, dynamic>> events = [];
@@ -98,6 +98,7 @@ class DatabaseProvider {
           String eventID = eventDoc.id;
 
           // Pridobite podatke o dogodku iz dokumenta
+          
           GuardianEvent event =
               GuardianEvent.fromMap(eventDoc.data() as Map<String, dynamic>);
 
